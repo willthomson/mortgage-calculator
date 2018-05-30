@@ -1,20 +1,86 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<h1>Affordability Calculator</h1>
 
+<form>
+    <fieldset>
+      <legend>Cashflow</legend>
+      <div>
+        <label for="net-monthly-earnings">Salary</label>
+        £ <input type="number" name="net-monthly-earnings" id="net-monthly-earnings" value="60000">
+      </div>
+      <div>
+        <label for="net-monthly-earnings">Net monthly earnings</label>
+        £ <input type="number" name="net-monthly-earnings" id="net-monthly-earnings" value="5000">
+      </div>
+      <div>
+        <label for="monthly-outgoings">Monthly outgoings</label>
+        £ <input type="number" name="monthly-outgoings" id="monthly-outgoings" value="3000">
+      </div>
+      <div>
+        <label for="disposable-income">Monthly disposable income</label>
+        £ <input type="number" name="disposable-income" id="disposable-income" value="">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Deposit</legend>
+      <div>
+        <label for="savings">Total savings</label>
+        £ <input type="number" name="savings" id="savings" value="">
+      </div>
+      <div>
+        <label for="stamp-duty">Stamp duty</label>
+        £ <input type="number" name="stamp-duty" id="stamp-duty" value="">
+      </div>
+      <div>
+        <label for="other-fees">Other fees</label>
+        £ <input type="number" name="other-fees" id="other-fees" value="">
+      </div>
+
+      <div>
+        <label for="deposit">Deposit</label>
+        £ <input type="number" name="deposit" id="deposit" value="">
+      </div>
+      <div>
+        <label for="excess-cash">Excess cash</label>
+        £ <input type="number" name="excess-cash" id="excess-cash" value="">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Mortgage Value</legend>
+      <div>
+        <label for="ltv">LTV</label>
+        <input type="number" name="ltv" id="ltv" value="90">%
+      </div>
+      <div>
+        <label for="term">Mortgage term</label>
+        <input type="number" name="term" id="term" value="30"> years
+      </div>
+      <div>
+        <label for="interest-rate">Interest rate</label>
+        <input type="number" name="interest-rate" id="interest-rate" value="4.20"> %
+      </div>
+      <div>
+        <label for="monthly-payment">Monthly payment</label>
+        £ <input type="number" name="monthly-payment" id="monthly-payment" value="">
+      </div>
+    </fieldset>
+
+    <div>
+      <h2>Indicators</h2>
+      <div>
+        Annual salary multiple for mortgage amount: 0.5x
+      </div>
+      <div>
+        % of income used for mortgage payment: 1%
+      </div>
+      <div>
+        % of disposable income used for mortgage payment: 3%
+      </div>
+    </div>
+
+    <div>
+      <h2>House price</h2>
+      £600000
+    </div>
+</form>
