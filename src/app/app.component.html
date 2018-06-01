@@ -1,6 +1,9 @@
 <h1>Affordability Calculator</h1>
 
 <form>
+    <div>
+      House price £{{housePrice}}
+    </div>
     <fieldset>
       <legend>Cashflow</legend>
       <div>
@@ -9,15 +12,14 @@
       </div>
       <div>
         <label for="net-monthly-earnings">Net monthly earnings</label>
-        £ <input type="number" name="net-monthly-earnings" id="net-monthly-earnings" value="5000">
+        £ <input type="number" name="net-monthly-earnings" id="net-monthly-earnings" [(ngModel)]="netMonthlyEarnings">
       </div>
       <div>
         <label for="monthly-outgoings">Monthly outgoings</label>
-        £ <input type="number" name="monthly-outgoings" id="monthly-outgoings" value="3000">
+        £ <input type="number" name="monthly-outgoings" id="monthly-outgoings" [(ngModel)]="monthlyOutgoings">
       </div>
       <div>
-        <label for="disposable-income">Monthly disposable income</label>
-        £ <input type="number" name="disposable-income" id="disposable-income" value="">
+        Monthly disposable income £{{disposableIncome}}
       </div>
     </fieldset>
 
@@ -25,24 +27,23 @@
       <legend>Deposit</legend>
       <div>
         <label for="savings">Total savings</label>
-        £ <input type="number" name="savings" id="savings" value="">
+        £ <input type="number" name="savings" id="savings" [(ngModel)]="totalSavings">
       </div>
       <div>
         <label for="stamp-duty">Stamp duty</label>
-        £ <input type="number" name="stamp-duty" id="stamp-duty" value="">
+        £ <input type="number" name="stamp-duty" id="stamp-duty" [(ngModel)]="stampDuty">
       </div>
       <div>
         <label for="other-fees">Other fees</label>
-        £ <input type="number" name="other-fees" id="other-fees" value="">
+        £ <input type="number" name="other-fees" id="other-fees" [(ngModel)]="otherFees">
       </div>
 
       <div>
-        <label for="deposit">Deposit</label>
-        £ <input type="number" name="deposit" id="deposit" value="">
+        Deposit £{{deposit}}
+        This is calculated using the highest affordable LTV, based on your earnings, savings and property price.
       </div>
       <div>
-        <label for="excess-cash">Excess cash</label>
-        £ <input type="number" name="excess-cash" id="excess-cash" value="">
+        Excess cash £{{excessCash}}
       </div>
     </fieldset>
 
@@ -50,37 +51,33 @@
       <legend>Mortgage Value</legend>
       <div>
         <label for="ltv">LTV</label>
-        <input type="number" name="ltv" id="ltv" value="90">%
+        <input type="number" name="ltv" id="ltv" [(ngModel)]="loanToValue">%
+      </div>
+      <div>
+        Loan amount £{{loanAmount}}
       </div>
       <div>
         <label for="term">Mortgage term</label>
-        <input type="number" name="term" id="term" value="30"> years
+        <input type="number" name="term" id="term"  [(ngModel)]="term"> years
       </div>
       <div>
         <label for="interest-rate">Interest rate</label>
-        <input type="number" name="interest-rate" id="interest-rate" value="4.20"> %
+        <input type="number" name="interest-rate" id="interest-rate" [(ngModel)]="interestRate"> %
       </div>
       <div>
-        <label for="monthly-payment">Monthly payment</label>
-        £ <input type="number" name="monthly-payment" id="monthly-payment" value="">
+        Monthly payment £{{monthlyPayment}}
       </div>
     </fieldset>
-
     <div>
       <h2>Indicators</h2>
       <div>
-        Annual salary multiple for mortgage amount: 0.5x
+        Annual salary multiple for mortgage amount: {{annualSalaryMultiple}}x
       </div>
       <div>
-        % of income used for mortgage payment: 1%
+        % of income used for mortgage payment: {{percentIncomeUsedForMortgagePayment}}%
       </div>
       <div>
-        % of disposable income used for mortgage payment: 3%
+        % of disposable income used for mortgage payment: {{percentDisposableIncomeUsedForMortgagePayment}}%
       </div>
-    </div>
-
-    <div>
-      <h2>House price</h2>
-      £600000
     </div>
 </form>
