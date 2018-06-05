@@ -20,16 +20,34 @@ export class AppComponent {
   public totalSavings: number = 50000;
 
   public get stampDuty() {
+
+    function getStampDutyByRateRange(housePrice, rates) {
+      let stampDutyAcc = 0;
+      rates.forEach((rate) => {
+        if (housePrice <= rate.min) {
+          // The house price is lower than this rate's minimum, so do nothing
+        } else {
+          // A portion of this house's price falls within this rate
+          let taxableAmount = housePrice - rate.min;
+          if (rate.max !== -1 && housePrice > rate.max) {
+            taxableAmount = rate.max - rate.min;
+          }
+          stampDutyAcc += Math.ceil(taxableAmount * (rate.percentage / 100));
+        }
+      });
+      return stampDutyAcc;
+    }
+
     if(this.buyerStatus === 'first' && this.housePrice <= 500000) {
       // First time buyers below £500k pay no stamp duty on the first £300k and
       // 5% thereafter
-      if(this.housePrice <= 300000) {
+      const stampDutyThreshold: number = 300000;
+      if (this.housePrice <= stampDutyThreshold) {
         return 0;
       } else {
-        return (this.housePrice - 300000) * 0.05;
+        return (this.housePrice - stampDutyThreshold) * 0.05;
       }
     } else if(this.buyerStatus === 'moving') {
-      let stampDuty = 0;
       const rates = [
         { min: 0, max: 125000, percentage: 0 },
         { min: 125001, max: 250000, percentage: 2 },
@@ -37,22 +55,9 @@ export class AppComponent {
         { min: 925001, max: 1500000, percentage: 10 },
         { min: 1500001, max: -1, percentage: 12 },
       ]
-
-      rates.forEach((rate) => {
-        if (this.housePrice <= rate.min) {
-          // The house price is lower than this rate's minimum, so do nothing
-        } else {
-          // A portion of this house's price falls within this rate
-          let taxableAmount = this.housePrice - rate.min;
-          if(rate.max !== -1 && this.housePrice > rate.max) {
-            taxableAmount = rate.max - rate.min;
-          }
-          stampDuty += Math.ceil(taxableAmount * (rate.percentage / 100));
-        }
-      });
+      const stampDuty: number = getStampDutyByRateRange(this.housePrice, rates);
       return stampDuty;
     } else if (this.buyerStatus === 'additional') {
-      let stampDuty = 0;
       const rates = [
         { min: 0, max: 125000, percentage: 3 },
         { min: 125001, max: 250000, percentage: 5 },
@@ -60,23 +65,12 @@ export class AppComponent {
         { min: 925001, max: 1500000, percentage: 13 },
         { min: 1500001, max: -1, percentage: 15 },
       ]
-
-      rates.forEach((rate) => {
-        if (this.housePrice <= rate.min) {
-          // The house price is lower than this rate's minimum, so do nothing
-        } else {
-          // A portion of this house's price falls within this rate
-          let taxableAmount = this.housePrice - rate.min;
-          if (rate.max !== -1 && this.housePrice > rate.max) {
-            taxableAmount = rate.max - rate.min;
-          }
-          stampDuty += Math.ceil(taxableAmount * (rate.percentage / 100));
-        }
-      });
+      const stampDuty: number = getStampDutyByRateRange(this.housePrice, rates);
       return stampDuty;
     }
     return 0;
   }
+
   public get effectiveTaxRate() {
     return this.stampDuty / this.housePrice * 100;
   }
