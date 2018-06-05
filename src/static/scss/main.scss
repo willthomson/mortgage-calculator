@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+.affordability-calculator {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+
+  &__transaction-details {
+
+  }
+
+  &__buyer-status {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 30px auto;
+  }
+
+  &__deposit {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: auto;
+
+    &-savings {
+      grid-column: 1 / 2;
+      grid-row: 2 / 6;
+    }
+    div {
+
+    }
+  }
+}
