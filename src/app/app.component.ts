@@ -65,7 +65,7 @@ export class AppComponent {
         { min: 925001, max: 1500000, percentage: 13 },
         { min: 1500001, max: -1, percentage: 15 },
       ]
-      const stampDuty: number = getStampDutyByRateRange(this.housePrice, rates);
+      const stampDuty: number = getStampDutyByRateRange(this.housePrice,  rates);
       return stampDuty;
     }
     return 0;
@@ -75,17 +75,26 @@ export class AppComponent {
     return this.stampDuty / this.housePrice * 100;
   }
 
-  public otherFees: number = 2000;
+  public otherFees: number = 3000;
 
-  public get deposit() {
-    return this.totalSavings - this.stampDuty - this.otherFees;
-  }
+  public deposit: number = this.totalSavings - this.stampDuty - this.otherFees;
 
   public get excessCash() {
     return (this.totalSavings - this.deposit - this.stampDuty - this.otherFees);
   }
 
-  public loanToValue: number = 90;
+  public get loanToValue() {
+    const maxAvailableForDeposit: number = this.totalSavings - this.stampDuty - this.otherFees;
+    let depositAtLtv: number;
+    let affordableLtv: number = 100;
+    for (let ltv: number = 100; ltv >= 0; ltv -= 5) {
+      depositAtLtv = (this.housePrice / 100) * (100 - ltv);
+      if (depositAtLtv <= maxAvailableForDeposit) {
+        affordableLtv = ltv;
+      }
+    }
+    return affordableLtv;
+  }
 
   public get loanAmount() {
     return this.housePrice - (this.housePrice / 100) * (100 - this.loanToValue);
