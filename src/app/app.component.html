@@ -2,6 +2,7 @@
 
 <form class="affordability-calculator">
   <section class="affordability-calculator__transaction-details">
+    <h2>Purchase Details</h2>
     <div class="affordability-calculator__buyer-status">
       <span>I'm</span>
       <div>
@@ -14,7 +15,6 @@
       <label for="house-price">House price</label>
       £ <input type="number" name="house-price" id="house-price" [(ngModel)]="housePrice">
     </div>
-    House price £{{ housePrice | number: '1.0-0' }}
   </section>
     <fieldset class="affordability-calculator__cashflow">
       <legend>Cashflow</legend>
@@ -64,8 +64,8 @@
     <fieldset>
       <legend>Mortgage Value</legend>
       <div>
-        <label for="ltv">LTV</label>
-        <input type="number" name="ltv" id="ltv" [(ngModel)]="loanToValue">%
+        LTV {{ loanToValue }}%
+        <p>This means you'll be borrowing {{ loanToValue }}% of the property price and paying a {{ 100 - loanToValue }}% deposit.</p>
       </div>
       <div>
         Loan amount £{{ loanAmount | number: '1.0-0' }}
