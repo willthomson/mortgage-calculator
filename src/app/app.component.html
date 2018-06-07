@@ -50,8 +50,11 @@
       <div>£<input type="number" name="other-fees" id="other-fees" [(ngModel)]="otherFees"></div>
     </div>
     <div class="affordability-calculator__item">
-      <div>Deposit £{{ deposit | number: '1.0-0'}}</div>
-      <div>This is calculated using the highest affordable LTV, based on your earnings, savings and property price.</div>
+      <div>Deposit</div>
+      <div>
+        £{{ deposit | number: '1.0-0'}}
+        <p>This is calculated using the highest affordable LTV, based on your earnings, savings and property price.</p>
+      </div>
     </div>
     <div class="affordability-calculator__item">
       <div>Excess cash</div>
