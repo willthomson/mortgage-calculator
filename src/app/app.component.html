@@ -3,87 +3,90 @@
 <form class="affordability-calculator">
   <section class="affordability-calculator__transaction-details">
     <h2>Purchase Details</h2>
-    <div class="affordability-calculator__buyer-status">
-      <span>I'm</span>
+    <div class="affordability-calculator__item affordability-calculator__buyer-status">
+      <span>Purchase type</span>
       <div>
-        <div><input type="radio" name="buyer-status" value="first" id="buyer-first" [(ngModel)]="buyerStatus"> <label for="buyer-first">a first time buyer</label></div>
-        <div><input type="radio" name="buyer-status" value="moving" id="buyer-moving" [(ngModel)]="buyerStatus"> <label for="buyer-moving">moving house (total 1 property)</label></div>
-        <div><input type="radio" name="buyer-status" value="additional" id="buyer-additional" [(ngModel)]="buyerStatus"> <label for="buyer-additional">buying an additional property</label></div>
+        <div><input type="radio" name="buyer-status" value="first" id="buyer-first" [(ngModel)]="buyerStatus"> <label for="buyer-first"> first time buyer</label></div>
+        <div><input type="radio" name="buyer-status" value="moving" id="buyer-moving" [(ngModel)]="buyerStatus"> <label for="buyer-moving"> moving house (total 1 property)</label></div>
+        <div><input type="radio" name="buyer-status" value="additional" id="buyer-additional" [(ngModel)]="buyerStatus"> <label for="buyer-additional"> additional property</label></div>
       </div>
     </div>
-    <div>
-      <label for="house-price">House price</label>
-      £ <input type="number" name="house-price" id="house-price" [(ngModel)]="housePrice">
+    <div class="affordability-calculator__item">
+      <label for="house-price">Property price</label>
+      <div>£ <input type="number" name="house-price" id="house-price" [(ngModel)]="housePrice"></div>
     </div>
   </section>
-    <fieldset class="affordability-calculator__cashflow">
-      <legend>Cashflow</legend>
+  <section class="affordability-calculator__cashflow">
+    <h2>Cashflow</h2>
+    <div class="affordability-calculator__item">
+      <label for="salary">Salary</label>
+      <div>£<input type="number" name="salary" id="salary" [(ngModel)]="salary"></div>
+    </div>
+    <div class="affordability-calculator__item">
+      <label for="net-monthly-earnings">Net monthly earnings</label>
+      <div>£<input type="number" name="net-monthly-earnings" id="net-monthly-earnings" [(ngModel)]="netMonthlyEarnings"></div>
+    </div>
+    <div class="affordability-calculator__item">
+      <label for="monthly-outgoings">Monthly outgoings</label>
+      <div>£<input type="number" name="monthly-outgoings" id="monthly-outgoings" [(ngModel)]="monthlyOutgoings"></div>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Monthly disposable income</div>
+      <div>£{{disposableIncome}}</div>
+    </div>
+  </section>
+  <section class="affordability-calculator__deposit">
+    <h2>Deposit</h2>
+    <div class="affordability-calculator__item">
+      <label for="savings">Total savings</label>
+      <div>£<input type="number" name="savings" id="savings" [(ngModel)]="totalSavings"></div>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Stamp duty</div>
+      <div>£{{ stampDuty | number: '1.0-0' }}<br>Effective tax rate is {{ effectiveTaxRate | number: '1.0-2' }}%</div>
+    </div>
+    <div class="affordability-calculator__item">
+      <label for="other-fees">Other fees</label>
+      <div>£<input type="number" name="other-fees" id="other-fees" [(ngModel)]="otherFees"></div>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Deposit £{{ deposit | number: '1.0-0'}}</div>
+      <div>This is calculated using the highest affordable LTV, based on your earnings, savings and property price.</div>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Excess cash</div>
+      <div>£{{ excessCash | number: '1.0-0' }}</div>
+    </div>
+  </section>
+  <section class="affordability-calculator__mortgage">
+    <h2>Mortgage</h2>
+    <div class="affordability-calculator__item">
+      <div>LTV</div>
       <div>
-        <label for="salary">Salary</label>
-        £ <input type="number" name="salary" id="salary" [(ngModel)]="salary">
-      </div>
-      <div>
-        <label for="net-monthly-earnings">Net monthly earnings</label>
-        £ <input type="number" name="net-monthly-earnings" id="net-monthly-earnings" [(ngModel)]="netMonthlyEarnings">
-      </div>
-      <div>
-        <label for="monthly-outgoings">Monthly outgoings</label>
-        £ <input type="number" name="monthly-outgoings" id="monthly-outgoings" [(ngModel)]="monthlyOutgoings">
-      </div>
-      <div>
-        Monthly disposable income £{{disposableIncome}}
-      </div>
-    </fieldset>
-    <section>
-      <h2>Deposit</h2>
-      <div class="affordability-calculator__deposit">
-        <legend></legend>
-        <div class="affordability-calculator__deposit-savings">
-          <label for="savings">Total savings</label>
-          £ <input type="number" name="savings" id="savings" [(ngModel)]="totalSavings">
-        </div>
-        <div>
-          Stamp duty £{{ stampDuty | number: '1.0-0' }}
-          <p>Effective tax rate is {{ effectiveTaxRate }}%</p>
-        </div>
-        <div>
-          <label for="other-fees">Other fees</label>
-          £ <input type="number" name="other-fees" id="other-fees" [(ngModel)]="otherFees">
-        </div>
-
-        <div>
-          Deposit £{{ deposit | number: '1.0-0'}}
-          This is calculated using the highest affordable LTV, based on your earnings, savings and property price.
-        </div>
-        <div>
-          Excess cash £{{ excessCash | number: '1.0-0' }}
-        </div>
-      </div>
-    </section>
-
-    <fieldset>
-      <legend>Mortgage Value</legend>
-      <div>
-        LTV {{ loanToValue }}%
+        {{ loanToValue }}%
         <p>This means you'll be borrowing {{ loanToValue }}% of the property price and paying a {{ 100 - loanToValue }}% deposit.</p>
       </div>
-      <div>
-        Loan amount £{{ loanAmount | number: '1.0-0' }}
-      </div>
-      <div>
-        <label for="term">Mortgage term</label>
-        <input type="number" name="term" id="term"  [(ngModel)]="term"> years
-      </div>
-      <div>
-        <label for="interest-rate">Interest rate</label>
-        <input type="number" name="interest-rate" id="interest-rate" [(ngModel)]="interestRate"> %
-      </div>
-      <div>
-        Monthly payment £{{ monthlyPayment | number: '1.2-2' }}
-      </div>
-    </fieldset>
-    <div>
-      <h2>Indicators</h2>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Loan amount</div>
+      <div>£{{ loanAmount | number: '1.0-0' }}</div>
+    </div>
+    <div class="affordability-calculator__item">
+      <label for="term">Mortgage term</label>
+      <div><input type="number" name="term" id="term"  [(ngModel)]="term"> years</div>
+    </div>
+    <div class="affordability-calculator__item">
+      <label for="interest-rate">Interest rate</label>
+      <div><input type="number" name="interest-rate" id="interest-rate" [(ngModel)]="interestRate">%</div>
+    </div>
+    <div class="affordability-calculator__item">
+      <div>Monthly payment</div>
+      <div>£{{ monthlyPayment | number: '1.2-2' }}</div>
+    </div>
+  </section>
+  <section class="affordability-calculator__indicators">
+    <h2>Indicators</h2>
+    <div class="affordability-calculator__indicators-cols">
       <div>
         Annual salary multiple for mortgage amount: {{ annualSalaryMultiple | number: '1.0-2' }}x
       </div>
@@ -94,4 +97,5 @@
         % of disposable income used for mortgage payment: {{ percentDisposableIncomeUsedForMortgagePayment | number: '1.0-2' }}%
       </div>
     </div>
+  </section>
 </form>
