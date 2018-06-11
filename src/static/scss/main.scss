@@ -2,6 +2,8 @@
 @import 'common';
 @import 'form';
 
+@import 'components/tooltip';
+
 .affordability-calculator {
   display: grid;
   grid-gap: 10px;

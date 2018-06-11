@@ -50,6 +50,22 @@
       <div>£<input type="number" name="other-fees" id="other-fees" [(ngModel)]="otherFees"></div>
     </div>
     <div class="affordability-calculator__item">
+      <div>Available for deposit</div>
+      <div>
+        £{{ availableForDeposit | number: '1.0-0'}}
+      </div>
+    </div>
+  </section>
+  <section class="affordability-calculator__mortgage">
+    <h2>Mortgage</h2>
+    <div class="affordability-calculator__item">
+      <div>LTV</div>
+      <div>
+        {{ loanToValue }}%
+        <p appTooltip>This means you'll be borrowing {{ loanToValue }}% of the property price and paying a {{ 100 - loanToValue }}% deposit.</p>
+      </div>
+    </div>
+    <div class="affordability-calculator__item">
       <div>Deposit</div>
       <div>
         £{{ deposit | number: '1.0-0'}}
@@ -59,16 +75,6 @@
     <div class="affordability-calculator__item">
       <div>Excess cash</div>
       <div>£{{ excessCash | number: '1.0-0' }}</div>
-    </div>
-  </section>
-  <section class="affordability-calculator__mortgage">
-    <h2>Mortgage</h2>
-    <div class="affordability-calculator__item">
-      <div>LTV</div>
-      <div>
-        {{ loanToValue }}%
-        <p>This means you'll be borrowing {{ loanToValue }}% of the property price and paying a {{ 100 - loanToValue }}% deposit.</p>
-      </div>
     </div>
     <div class="affordability-calculator__item">
       <div>Loan amount</div>

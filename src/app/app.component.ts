@@ -77,7 +77,11 @@ export class AppComponent {
 
   public otherFees: number = 3000;
 
-  public deposit: number = this.totalSavings - this.stampDuty - this.otherFees;
+  public availableForDeposit: number = this.totalSavings - this.stampDuty - this.otherFees;
+
+  public get deposit() {
+    return this.housePrice * ((100 - this.loanToValue) / 100);
+  }
 
   public get excessCash() {
     return (this.totalSavings - this.deposit - this.stampDuty - this.otherFees);
