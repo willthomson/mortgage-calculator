@@ -17,17 +17,14 @@ export class HeroComponent implements OnInit {
   ngOnInit() {
     const randomCount: number = Math.floor(Math.random() * this.photos.length);
     const photoId: string = this.photos[randomCount];
-    this.flickrService.photosGetSizes(photoId).subscribe(data => {
-      // do something with the data
-      console.log(data);
+    let photoData: any;
+    let photoSizes: any;
+    this.flickrService.photosGetInfo(photoId).subscribe(data => {
+      photoData = data;
+      this.flickrService.photosGetSizes(photoId).subscribe(data => {
+        photoSizes = data;
+        console.log(photoData, photoSizes);
+      });
     });
   }
-
-
-  // public get backgroundImage() {
-  //   // const backgroundImage = FlickrService.getRandomImage();
-  //   // console.log(backgroundImage);
-  //   return backgroundImage;
-  // }
-
 }

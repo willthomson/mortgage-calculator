@@ -19,9 +19,13 @@ export class FlickrService {
     return res.json();
   }
 
+  public photosGetInfo(photoId: string): Observable<any> {
+    const url: string = `${this.apiRoot}&method=flickr.photos.getInfo&photo_id=${photoId}`;
+    return this.http.get(url).pipe(map(this.extractApiResponseData));
+  }
+
   public photosGetSizes(photoId: string): Observable<any> {
     const url: string = `${this.apiRoot}&method=flickr.photos.getSizes&photo_id=${photoId}`;
-    return this.http.get(url) // define a variable server_url to assign the requested url
-      .pipe(map(this.extractApiResponseData));
+    return this.http.get(url).pipe(map(this.extractApiResponseData));
   }
 }
